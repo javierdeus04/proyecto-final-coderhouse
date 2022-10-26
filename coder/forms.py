@@ -1,12 +1,30 @@
 from django import forms
-from coder.models import Paciente
+from coder.models import ConsultaMedica, Funcionario, Paciente
 
 class PacienteForm(forms.ModelForm):
 
-    fecha_de_nacimiento = forms.DateField(label='Fecha de nacimiento', input_formats=['%d/%m/%Y'], 
-    widget=forms.TextInput(attrs={'placeholder': '30/12/1995'}))
+    fecha_de_nacimiento = forms.DateField()
     
     class Meta:
         model = Paciente
         fields = {'nombre', 'apellido', 'fecha_de_nacimiento', 'numero_ci', 'numero_cel'}
+
+class FuncionarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Funcionario
+        fields = {'nombre', 'apellido', 'cargo', 'numero_func'}
+
+class ConsultaForm(forms.ModelForm):
+
+    class Meta:
+        model = ConsultaMedica
+        fields = {'medico', 'especialidad', 'dias_consulta'}
+
+
+class Buscar(forms.Form):
+    nombre = forms.CharField(max_length=100)
+
+class BuscarConsulta(forms.Form):
+    especialidad = forms.CharField(max_length=100)
 

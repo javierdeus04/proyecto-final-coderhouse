@@ -1,0 +1,14 @@
+{% extends 'coder/base.html' %}
+
+{% block titulo%}
+    Lista de funcionarios
+{% endblock %}
+
+{% block contenido %}
+
+    <ul>
+        {% for funcionario in funcionarios %}
+            <li>{{funcionario}}</li>
+        {% endfor %}
+    <ul>
+{% endblock %}

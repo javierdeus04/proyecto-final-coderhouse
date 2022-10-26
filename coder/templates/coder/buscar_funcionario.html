@@ -1,0 +1,16 @@
+{% extends 'coder/base.html' %}
+{% block titulo%} Buscar funcionario {% endblock %}
+{% block contenido %}
+  
+  <form action="/funcionarios/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Buscar">
+  </form>
+
+  {% for funcionario in lista_funcionarios %}
+      <ul>
+          <li> Nombre: {{funcionario.nombre}}, Apellido: {{funcionario.apellido}}, N° Func: {{funcionario.numero_func}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}

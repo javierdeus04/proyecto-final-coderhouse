@@ -1,0 +1,16 @@
+{% extends 'coder/base.html' %}
+{% block titulo%} Buscar por consultas médicas {% endblock %}
+{% block contenido %}
+  
+  <form action="/consultas/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Buscar">
+  </form>
+
+  {% for consulta in consultas_medicas %}
+      <ul>
+          <li>{{consulta.especialidad}}, Medico: {{consulta.medico}}, Dias consulta: {{consulta.dias_consulta}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}

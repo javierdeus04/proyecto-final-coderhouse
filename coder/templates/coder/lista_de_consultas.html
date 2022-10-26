@@ -1,0 +1,14 @@
+{% extends 'coder/base.html' %}
+
+{% block titulo%}
+    Lista de consultas médicas
+{% endblock %}
+
+{% block contenido %}
+
+    <ul>
+        {% for consulta in consultas_medicas %}
+            <li>{{consulta}}</li>
+        {% endfor %}
+    <ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'coder/base.html' %}
+{% block titulo%} Buscar pacientes {% endblock %}
+{% block contenido %}
+  
+  <form action="/pacientes/buscar" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Buscar">
+  </form>
+
+  {% for paciente in lista_pacientes %}
+      <ul>
+          <li> Nombre: {{paciente.nombre}}, Apellido: {{paciente.apellido}}, CI.: {{paciente.numero_ci}}</li>
+      </ul>
+  {% endfor %}
+{% endblock %}

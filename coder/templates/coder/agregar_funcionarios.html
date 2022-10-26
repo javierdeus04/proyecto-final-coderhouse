@@ -1,0 +1,18 @@
+{% extends 'coder/base.html' %}
+
+{% block titulo%}
+    
+{% endblock %}
+
+{% block contenido %}
+    
+    <h2> Agregar funcionarios </h2>
+
+    <form actions='/funcionarios/agregar' method='post'>
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Agregar">
+    </form>
+
+
+{% endblock %}

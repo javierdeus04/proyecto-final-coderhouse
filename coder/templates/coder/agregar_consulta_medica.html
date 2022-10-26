@@ -6,12 +6,12 @@
 
 {% block contenido %}
     
-    <h2> Actualizar paciente </h2>
+    <h2> Agregar consultas médicas </h2>
 
-    <form actions='actualizar/{{pk}}' method='post'>
+    <form actions='/consultas/agregar' method='post'>
         {% csrf_token %}
         {{form}}
-        <input type="submit" value="Actualizar">
+        <input type="submit" value="Agregar">
     </form>
 
 
