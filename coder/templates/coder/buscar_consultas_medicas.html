@@ -1,5 +1,5 @@
 {% extends 'coder/base.html' %}
-{% block titulo%} Buscar por consultas médicas {% endblock %}
+{% block titulo%} Buscar consultas médicas {% endblock %}
 {% block contenido %}
   
   <form action="/consultas/buscar" method="post">
@@ -10,7 +10,9 @@
 
   {% for consulta in consultas_medicas %}
       <ul>
-          <li>{{consulta.especialidad}}, Medico: {{consulta.medico}}, Dias consulta: {{consulta.dias_consulta}}</li>
+          <li>{{consulta.especialidad}}, Médico: {{consulta.medico}}, Días de consulta: {{consulta.dias_consulta}}</li>
       </ul>
   {% endfor %}
+  
+  <br>  <a href="{% url 'principal' %}">Volver</a>
 {% endblock %}

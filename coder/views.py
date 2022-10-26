@@ -1,7 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from coder.models import ConsultaMedica, Funcionario, Paciente
-from coder.forms import Buscar, PacienteForm, FuncionarioForm, ConsultaForm, BuscarConsulta
+from coder.forms import PacienteForm, FuncionarioForm, ConsultaForm, BuscarPorEsp, BuscarPorNombrePac, BuscarPorNumFunc
+
+class PaginaPpal(View):
+    template_name = 'coder/ppal.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)
+
 
 class ListarPacientes(View):
     template_name = 'coder/lista_de_pacientes.html'
@@ -63,7 +70,7 @@ class AgregarFuncionarios(View):
 class AgregarConsulta(View):
     template_name = 'coder/agregar_consulta_medica.html'
     form_class = ConsultaForm
-    initial = {'medico':'', 'especialidad':'', 'dias':''}
+    initial = {'medico':'', 'especialidad':'', 'dias_consulta':''}
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
@@ -78,10 +85,9 @@ class AgregarConsulta(View):
             
         return render(request, self.template_name, {'form': form})
 
-
 class BuscarPaciente(View):
 
-    form_class = Buscar
+    form_class = BuscarPorNombrePac
     template_name = 'coder/buscar_paciente.html'
     initial = {"nombre":""}
 
@@ -102,9 +108,9 @@ class BuscarPaciente(View):
 
 class BuscarFuncionario(View):
 
-    form_class = Buscar
+    form_class = BuscarPorNumFunc
     template_name = 'coder/buscar_funcionario.html'
-    initial = {"nombre":""}
+    initial = {"numero_func":int}
 
     def get(self, request):
         form = self.form_class(initial=self.initial)
@@ -113,8 +119,8 @@ class BuscarFuncionario(View):
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data.get("nombre")
-            lista_funcionarios = Funcionario.objects.filter(nombre__icontains=nombre).all() 
+            numero_func = form.cleaned_data.get("numero_func")
+            lista_funcionarios = Funcionario.objects.filter(numero_func__icontains=numero_func).all() 
             form = self.form_class(initial=self.initial)
             return render(request, self.template_name, {'form':form, 
                                                         'lista_funcionarios':lista_funcionarios})
@@ -123,7 +129,7 @@ class BuscarFuncionario(View):
 
 class BuscarConsulta(View):
 
-    form_class = BuscarConsulta
+    form_class = BuscarPorEsp
     template_name = 'coder/buscar_consultas_medicas.html'
     initial = {"especialidad":""}
 

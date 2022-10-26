@@ -22,9 +22,13 @@ class ConsultaForm(forms.ModelForm):
         fields = {'medico', 'especialidad', 'dias_consulta'}
 
 
-class Buscar(forms.Form):
+class BuscarPorNombrePac(forms.Form):
     nombre = forms.CharField(max_length=100)
 
-class BuscarConsulta(forms.Form):
+class BuscarPorNumFunc(forms.Form):    
+    numero_func = forms.IntegerField()
+
+class BuscarPorEsp(forms.Form):
     especialidad = forms.CharField(max_length=100)
+
 

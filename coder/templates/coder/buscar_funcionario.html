@@ -10,7 +10,10 @@
 
   {% for funcionario in lista_funcionarios %}
       <ul>
-          <li> Nombre: {{funcionario.nombre}}, Apellido: {{funcionario.apellido}}, N° Func: {{funcionario.numero_func}}</li>
+          <li> Nombre: {{funcionario.nombre}}, Apellido: {{funcionario.apellido}}, Cargo: {{funcionario.cargo}},
+             N° Func: {{funcionario.numero_func}}</li>
       </ul>
   {% endfor %}
+  
+  <br>  <a href="{% url 'principal' %}">Volver</a>
 {% endblock %}
