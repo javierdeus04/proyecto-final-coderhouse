@@ -1,4 +1,4 @@
-# Proyecto web Django con Python
+# Proyecto intermedio para sistema de gestión
 Versión desarrollada en Python 3.10.6.
 
 Esta aplicación permite administrar un sitio para guardar información en una base de datos. En ellas se podrá:
