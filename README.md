@@ -11,7 +11,7 @@ Pasos para su instalación:
 2° En la ruta correspondiente a la carpea del proyecto:
 - Realizar las migraciones: `python manage.py migrate`
 - Correr el servidor: `python manage.py runserver`
-3° En el navegador ir al localhost http://127.0.0.1:8000/ para confirmar que la aplicación funciona correctamente.
+- 3° En el navegador ir al localhost http://127.0.0.1:8000/ para confirmar que la aplicación funciona correctamente.
 
 Recorriendo la app:
 - Ingresar a http://127.0.0.1:8000/admin/ para acceder al sitio de administrador
