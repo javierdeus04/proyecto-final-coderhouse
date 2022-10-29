@@ -8,17 +8,18 @@ from django.template import RequestContext
 from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse_lazy
 from coder.models import Paciente
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
 
-def index(request):    
-    return render(request, 'coder/index.html')
-def mi_error_404(request, exception=None):
-    return render(request, '404.html')
-def mi_error_500(request):
-    return render(request, '500.html')
-def mi_charts(request):
-    return render(request, 'coder/charts.html')
-def mi_layout_sidenav_ligth(request):
-    return render(request, 'coder/layout-sidenav-light.html')
+@login_required
+def principal(request):    
+    return render(request, 'coder/principal.html')
+
+
+
+
+
 def mi_layout_static(request):
     return render(request, 'coder/layout-static.html')
 def mi_login(request):
@@ -26,15 +27,22 @@ def mi_login(request):
 def mi_recovery_password(request):
     return render(request, 'coder/password.html')
 
-class NuevoPaciente(CreateView):
+class NuevoPaciente(LoginRequiredMixin, CreateView):
     model = Paciente
     fields = ['nombre', 'apellido', 'fecha_de_nacimiento', 'numero_ci', 'numero_cel', 'motivo_consulta']
-    success_url = 'coder/litsa-pacientes.html'
+    success_url = 'index.html'
 
-class PacientesList(ListView):
+class PacientesList(LoginRequiredMixin, ListView):
     model = Paciente
 
 class PacienteDetalle(DetailView):
     model = Paciente
+
+class UsuarioLogin(LoginView):
+    template_name = 'coder/login.html'
+    next_page = reverse_lazy("index")
+
+class UsuarioLogout(LogoutView):
+    template_name = 'coder/logout.html'
 
 
