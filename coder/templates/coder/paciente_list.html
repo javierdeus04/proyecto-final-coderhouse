@@ -1,0 +1,14 @@
+{% extends 'coder/index.html' %}
+
+{% block titulo%}
+    Lista de pacientes
+{% endblock %}
+
+{% block contenido %}
+    {% for paciente in object_list %}
+    <ul>
+        <li> {{paciente}} </li>
+    </ul>
+    {% endfor %}
+    <a href="{% url 'index' %}">Ocultar lista</a>
+{% endblock %}

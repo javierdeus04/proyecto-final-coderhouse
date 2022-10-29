@@ -1,6 +1,4 @@
 from django.contrib import admin
-from coder.models import Funcionario, Paciente, ConsultaMedica
+from coder.models import Paciente
 
 admin.site.register(Paciente)
-admin.site.register(Funcionario)
-admin.site.register(ConsultaMedica)

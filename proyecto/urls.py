@@ -13,22 +13,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from cgitb import handler
+from logging import exception
+from re import template
+from urllib import request
 from django.contrib import admin
 from django.urls import path
-from coder.views import (AgregarConsulta, BuscarConsulta, ListarConsultas, 
-                        AgregarFuncionarios, BuscarFuncionario, BuscarPaciente, 
-                        ListarPacientes, AgregarPacientes, ListarFuncionarios, PaginaPpal)
+from coder.views import (NuevoPaciente, PacienteDetalle, PacientesList, index, mi_charts, mi_error_404, mi_error_500,
+                        mi_layout_sidenav_ligth, mi_layout_static, mi_login, mi_recovery_password)
+from django.conf.urls import handler404
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ppal/', PaginaPpal.as_view(), name='principal'),
-    path('pacientes/', ListarPacientes.as_view(), name='pacientes-list'),
-    path('pacientes/agregar', AgregarPacientes.as_view(), name='nuevo-paciente'),
-    path('pacientes/buscar', BuscarPaciente.as_view(), name='buscar-paciente'),
-    path('funcionarios/', ListarFuncionarios.as_view(), name='funcionarios-list'),
-    path('funcionarios/agregar', AgregarFuncionarios.as_view(), name='nuevo-funcionario'),
-    path('funcionarios/buscar', BuscarFuncionario.as_view(), name='buscar-funcionario'),
-    path('consultas/', ListarConsultas.as_view(), name='conultas-list'),
-    path('consultas/agregar', AgregarConsulta.as_view(), name='agregar-consulta'),
-    path('consultas/buscar', BuscarConsulta.as_view(), name='buscar-consulta'),
+    path('index/', index, name='index'),
+    path('coder/charts/', mi_charts),
+    path('coder/layout-sidenav-light.html/', mi_layout_sidenav_ligth),
+    path('coder/layout-static/', mi_layout_static),
+    path('coder/login/', mi_login),
+    path('coder/password/', mi_recovery_password),
+    path('coder/lista-pacientes/', PacientesList.as_view(), name='lista_pacientes'),
+    path('index/nuevo-paciente/', NuevoPaciente.as_view(), name='nuevo_paciente'),
+    path('coder/paciente-detalle/<int:pk>/', PacienteDetalle.as_view()),
 ]
+
+
+handler404 = 'coder.views.mi_error_404'
+handler500 = 'coder.views.mi_error_500'
+
+
