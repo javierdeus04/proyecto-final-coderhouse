@@ -1,0 +1,13 @@
+{% extends 'coder/detalle-paciente-template.html' %}
+
+{% block titulo%}
+{% endblock %}
+
+{% block contenido %}
+    <li>Nombre: {{object.nombre}}</li> <li>Apellido: {{object.apellido}}</li>
+     <li>Fecha de nacimiento: {{object.fecha_de_nacimiento}}</li>
+    <li>CI: {{object.numero_ci}}</li> <li>Numero de contacto: {{object.numero_contacto}}</li>
+
+    <br><b><a href>Agregar nueva entrada a la historia clinica</Agregar></b>
+ 
+{% endblock %}
